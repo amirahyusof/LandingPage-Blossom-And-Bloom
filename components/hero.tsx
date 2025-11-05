@@ -1,40 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+
 export default function HeroSection(){
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const Flower = ({ className = "", index = 1 }) => (
-    <div className={`flower flower-${index} ${className}`}>
-      <div className={`flower-leafs flower-leafs-${index}`}>
-        <div className="flower-leaf flower-leaf-1"></div>
-        <div className="flower-leaf flower-leaf-2"></div>
-        <div className="flower-leaf flower-leaf-3"></div>
-        <div className="flower-leaf flower-leaf-4"></div>
-        <div className="flower-white-circle"></div>
-        
-        {[1,2,3,4,5,6,7,8].map(i => (
-          <div key={i} className={`flower-light flower-light-${i}`}></div>
-        ))}
-      </div>
-      <div className="flower-line">
-        {Array.from({length: index === 1 ? 6 : 4}, (_, i) => (
-          <div key={i} className={`flower-line-leaf flower-line-leaf-${i+1}`}></div>
-        ))}
-      </div>
-    </div>
-  );
-
   return (
     <section id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFC5C5] pt-16">
