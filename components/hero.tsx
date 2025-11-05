@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 export default function HeroSection(){
   const [loaded, setLoaded] = useState(false);
 
@@ -37,14 +38,18 @@ export default function HeroSection(){
   return (
     <section id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFC5C5] pt-16">
-
-      {/* Abstract background pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute w-20 md:w-40 h-20 md:h-40 rounded-full bg-[#C7DCA7] top-1/4 left-1/4 animate-float" />
-        <div className="absolute w-40 md:w-60 h-40 md:h-60 rounded-full bg-[#89B9AD] bottom-1/4 right-1/3 animate-float-delay" />
-        <div className="absolute w-12 md:w-20 h-12 md:h-20 rounded-full bg-[#FFEBD8] top-1/3 right-1/4 animate-float-slow" />
-        <div className="absolute w-20 md:w-32 h-20 md:h-32 rounded-full bg-[#FFC5C5] bottom-1/4 left-1/3 animate-float-delay-slow" />
+        {/* Flower Garden */}
+      <div className="absolute bottom-0 w-full">
+        <Image
+          src="/home.jpg"
+          alt="Flower Garden"
+          layout="responsive"
+          width={1920}
+          height={1080}
+          className="object-cover"
+        />
       </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/10"></div>
 
       <div className="container mx-auto px-4 z-10 -mt-40">
         <motion.div
@@ -54,7 +59,7 @@ export default function HeroSection(){
           transition={{ duration: 0.8 }}
         >
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#89B9AD] mb-4 md:mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-[#89B9AD] font-extrabold drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)] mb-4 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -63,7 +68,7 @@ export default function HeroSection(){
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-[#89B9AD] mb-6 md:mb-8 px-4"
+            className="text-base sm:text-lg md:text-xl text-[#faf3e0] drop-shadow-[0_2px_3px_rgba(0,0,0,0.5)] mb-6 md:mb-8 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -92,37 +97,6 @@ export default function HeroSection(){
             </Button>
           </motion.div>
         </motion.div>
-      </div>
-      
-      {/* Flower Garden */}
-      <div className="absolute bottom-0 w-full">
-        <div className={`flowers flex justify-around flex-wrap transition-all duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Generate multiple rows of flowers */}
-          {Array.from({ length: 4 }).map((_, row) => (
-            <div key={row} className="w-full flex flex-wrap relative" style={{ marginBottom: `-${row * 2}rem` }}>
-              {Array.from({ length: 12 }).map((_, col) => {
-                const randomOffset = Math.floor(Math.random() * 40);
-                const randomScale = 0.5 + Math.random() * 0.5;
-                return (
-                  <div 
-                    key={`${row}-${col}`}
-                    className="relative"
-                    style={{
-                      width: '8%',
-                      marginLeft: `${randomOffset}px`,
-                      transform: `scale(${randomScale})`,
-                    }}
-                  >
-                    <Flower 
-                      index={(row + col) % 3 + 1}
-                      className={`transform translate-y-${20 + randomOffset}`}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
