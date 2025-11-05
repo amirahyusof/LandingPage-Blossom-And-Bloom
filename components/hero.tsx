@@ -10,13 +10,12 @@ export default function HeroSection(){
     <section id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFC5C5] pt-16">
         {/* Flower Garden */}
-      <div className="absolute bottom-0 w-full">
+      <div className="absolute w-full min-h-screen">
         <Image
           src="/home.jpg"
           alt="Flower Garden"
-          layout="responsive"
-          width={1920}
-          height={1080}
+          layout="fill"
+          objectFit="cover"
           className="object-cover"
         />
       </div>
